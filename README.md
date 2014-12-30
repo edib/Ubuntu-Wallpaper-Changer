@@ -5,4 +5,4 @@ If don't like same wallpaper everday, with this simple script, you can schedule 
 
 put it somewhere on your filesystem and make it a executable. then put in crontab. like
 
-*/5 *  * * * /home/your-name/bin/wallpaper.py
+* * * * * PID=$(pgrep gnome-session); export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-); /<script-path>/wallpaper.py
