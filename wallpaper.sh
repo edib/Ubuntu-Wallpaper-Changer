@@ -1,8 +1,9 @@
-#/bin/bash
+#!/bin/bash
 
-PID=$(pgrep gnome-session)
-export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)
+folder="${HOME}/wallpapers"
+pic=$(ls $folder/* | shuf -n1)
 
-path="<path of wallpapers"
-randomimage=`ls $path | shuf -n 1`
-gsettings set org.gnome.desktop.background picture-uri "file://$path$randomimage"
+# values for picture-options: ‘none’, ‘wallpaper’, ‘centered’, ‘scaled’, ‘stretched’, ‘zoom’, ‘spanned’
+gsettings set org.gnome.desktop.background picture-options 'stretched'
+gsettings set org.gnome.desktop.background picture-uri "file://$pic"
+
